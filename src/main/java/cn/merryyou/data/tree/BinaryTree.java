@@ -85,11 +85,11 @@ public class BinaryTree {
         if (node != null) {
             if (node.left == null) {
                 node.setLeft(new BinaryTree(value));
+            } else {
+                BinaryTree newNode = new BinaryTree(value);
+                newNode.left = node.left;
+                node.left = newNode;
             }
-        } else {
-            BinaryTree newNode = new BinaryTree(value);
-            newNode.left = node.left;
-            node.left = newNode;
         }
     }
 
@@ -97,11 +97,11 @@ public class BinaryTree {
         if (node != null) {
             if (node.right == null) {
                 node.setRight(new BinaryTree(value));
+            } else {
+                BinaryTree newNode = new BinaryTree(value);
+                newNode.right = node.right;
+                node.right = newNode;
             }
-        } else {
-            BinaryTree newNode = new BinaryTree(value);
-            newNode.right = node.right;
-            node.right = newNode;
         }
     }
 
