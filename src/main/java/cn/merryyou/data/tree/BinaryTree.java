@@ -136,7 +136,7 @@ public class BinaryTree {
                 node.left.inOrder(node.left);
             }
 
-            System.out.println(node.data+" ");
+            System.out.print(node.data+" ");
 
             if (node.right != null) {
                 node.right.inOrder(node.right);
@@ -159,7 +159,7 @@ public class BinaryTree {
                 node.right.postOrder(node.right);
             }
 
-            System.out.println(node.data+" ");
+            System.out.print(node.data+" ");
         }
     }
 
@@ -176,7 +176,7 @@ public class BinaryTree {
             while (!queue.isEmpty()) {
                 BinaryTree current_node = queue.poll();
 
-                System.out.println(current_node.data+" ");
+                System.out.print (current_node.data+" ");
 
                 if (current_node.left != null) {
                     queue.add(current_node.left);
@@ -265,9 +265,8 @@ public class BinaryTree {
                     parent.right = node.right;
                     node.clearNode(node);
                 } else {
-                    parent.left = node.right;
-                    node.right.left = node.left;
-                    node.clearNode(node);
+                   node.data=String.valueOf(node.right.findMinValue(node.right));
+                   node.right.removeNode(node.right,Integer.valueOf(node.right.data),node);
                 }
                 return true;
             }
