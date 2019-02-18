@@ -1,8 +1,5 @@
 package cn.merryyou.aop;
 
-import org.junit.Before;
-import org.junit.Test;
-
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
@@ -17,7 +14,6 @@ public class ReflectiveMethodInvocationTest {
 
     private TransactionManager tx;
 
-    @Before
     public void setUp() throws Exception {
         nioCoderService = new NioCoderService();
         tx = new TransactionManager();
@@ -25,15 +21,21 @@ public class ReflectiveMethodInvocationTest {
         afterReturningAdvice = new AspectJAfterReturningAdvice(TransactionManager.class.getMethod("commit"), tx);
     }
 
-    @Test
     public void testMethodInvocation() throws Throwable {
         Method method = NioCoderService.class.getMethod("testAop");
         List<MethodInterceptor> interceptorList = new ArrayList<>();
-        interceptorList.add(afterReturningAdvice);
         interceptorList.add(beforeAdvice);
+        interceptorList.add(afterReturningAdvice);
 
         ReflectiveMethodInvocation mi = new ReflectiveMethodInvocation(nioCoderService, method, interceptorList);
 
         mi.proceed();
+    }
+
+
+    public static void main(String[] args) throws Throwable {
+        ReflectiveMethodInvocationTest reflectiveMethodInvocationTest = new ReflectiveMethodInvocationTest();
+        reflectiveMethodInvocationTest.setUp();
+        reflectiveMethodInvocationTest.testMethodInvocation();
     }
 }
