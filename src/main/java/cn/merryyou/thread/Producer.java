@@ -23,16 +23,15 @@ public class Producer extends Thread {
                 }
                 // 2. 往容器里面放水果
                 Container.container.add("apple");
-                System.out.println("往容器里面放了一个水果，当前容器中数量为：" + Container.container.size());
+                System.out.println("往容器里面放了一个水果，当前容器中数量为：" + Container.container.size() + "!!!!!!!!!!!!");
                 // 3. 唤醒消费者
                 Container.container.notify();
-                // 4. 模拟控制速度
-
-                try {
-                    Thread.sleep(800);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
+            }
+            // 4. 模拟控制速度
+            try {
+                Thread.sleep(100);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
             }
         }
     }
